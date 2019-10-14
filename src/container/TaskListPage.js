@@ -10,20 +10,17 @@ class TasklistPage extends Component {
     this.props.loadTasks();
   }
 
-  renderItem = (task) => {
-    console.log(task)
-    return (
-      <List.Item key={task.id}>
-        <List.Icon name="browser" size="large" verticalAlign="middle" />
-        <List.Content>
-          <Link to={`/tasklist/${task.processDefinitionId}/${task.id}`}>
-            <List.Header>{task.name}</List.Header>
-            <List.Description>{task.created}</List.Description>
-          </Link>
-        </List.Content>
-      </List.Item>
-    );
-  }
+  renderItem = (task) => (
+    <List.Item key={task.id}>
+      <List.Icon name="browser" size="large" verticalAlign="middle" />
+      <List.Content>
+        <Link to={`/tasklist/${task.processDefinitionId}/${task.id}`}>
+          <List.Header>{task.name}</List.Header>
+          <List.Description>{task.created}</List.Description>
+        </Link>
+      </List.Content>
+    </List.Item>
+  );
 
   render() {
     let { task, ...rest } = this.props;

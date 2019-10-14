@@ -19,7 +19,8 @@ export const navigationDefails = [
 
 export const routerComponents = [
   { to: "/", exact: true, component: Home },
-  { to: "/tasklist", component: TaskListPage },
+  { to: "/tasklist", exact: true, component: TaskListPage },
+  { to: "/tasklist/:processDefinitionId/:taskId", exact: true, component: TaskListPage },
   { to: "/startprocess/list", exact: true, component: StartProcessListPage },
   { to: "/startprocess/key/:process", exact: true, component: StartProcessPage },
 ];
