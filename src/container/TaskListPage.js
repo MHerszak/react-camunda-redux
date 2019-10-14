@@ -10,20 +10,24 @@ class TasklistPage extends Component {
     this.props.loadTasks();
   }
 
-  renderItem(task) {
-    return (<List.Item key={task.id}>
-      <List.Icon name="browser" size="large" verticalAlign="middle" />
-      <List.Content>
-        <Link to={`/tasklist/${task.processDefinitionId}/${task.id}`}>
-          <List.Header>{task.name}</List.Header>
-          <List.Description>{task.created}</List.Description>
-        </Link>
-      </List.Content>
-    </List.Item>)
+  renderItem = (task) => {
+    console.log(task)
+    return (
+      <List.Item key={task.id}>
+        <List.Icon name="browser" size="large" verticalAlign="middle" />
+        <List.Content>
+          <Link to={`/tasklist/${task.processDefinitionId}/${task.id}`}>
+            <List.Header>{task.name}</List.Header>
+            <List.Description>{task.created}</List.Description>
+          </Link>
+        </List.Content>
+      </List.Item>
+    );
   }
 
   render() {
-    let { task } = this.props
+    let { task, ...rest } = this.props;
+    console.log(rest);
     let taskForm = ""
     if (this.props.processDefinitionId) {
       taskForm = <Taskform />
@@ -39,11 +43,11 @@ class TasklistPage extends Component {
         <Grid divided>
           <Grid.Row>
             <Grid.Column width={4}>
-              <List divided relaxed>
-                {task.map((item) => this.renderItem(item))}
+              <List relaxed>
+                {Object.values(task).map(this.renderItem)}
               </List>
             </Grid.Column>
-            <Grid.Column width={12}>
+            <Grid.Column width={4}>
               {taskForm}
             </Grid.Column>
           </Grid.Row>

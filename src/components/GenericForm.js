@@ -1,7 +1,12 @@
-import React, { Component } from "react"
-import * as FormTypes from "./forms"
+import React, { Component } from "react";
+import * as FormTypes from "./forms";
 import { completeTask, startProcessInstance, loadTaskVariables } from "./../store/actionTypes";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
+
+const firtLetteUpperCase = str => {
+  const [first, ...rest] = str.split("");
+  return [first.toUpperCase(), ...rest].join("");
+};
 
 class GenericForm extends Component {
   componentDidUpdate(prevProps, prevState) {
@@ -11,8 +16,9 @@ class GenericForm extends Component {
   }
 
   render() {
-    const { formKey, processDefinitionKey, taskId } = this.props
-    const Form = FormTypes[processDefinitionKey][formKey]
+    const { formKey, processDefinitionKey, taskId } = this.props;
+
+    const Form = FormTypes[firtLetteUpperCase(formKey)];
     if (taskId == null) {
       return (
         <div className="generic-form">
@@ -28,26 +34,26 @@ class GenericForm extends Component {
     }
   }
 
-  loadExistingVariables() {
+  loadExistingVariables = () => {
     let { form, dispatch, taskId } = this.props
     if (form) {
       this.setState({ loading: true });
-      dispatch(loadTaskVariables(taskId, form.registeredFields))
+      this.props.loadTaskVariables(taskId, form.registeredFields);
     }
 
   }
 
-  handleComplete(values, dispatch) {
+  handleComplete = (values, dispatch) => {
     values = this.getBody(values)
-    return dispatch(completeTask(this.props.taskId, values))
+    return this.props.completeTask(this.props.taskId, values);
   }
 
-  handleStartInstance(values, dispatch) {
+  handleStartInstance = (values, dispatch) =>  {
     values = this.getBody(values)
-    return dispatch(startProcessInstance(this.props.processDefinitionKey, values))
+    return this.props.startProcessInstance(this.props.processDefinitionKey, values);
   }
 
-  getBody(values) {
+  getBody = (values) => {
     let variables = {}
     Object.keys(values).forEach((item) => {
       variables[item] = { "value": values[item] }
@@ -59,5 +65,6 @@ class GenericForm extends Component {
 }
 
 export default connect(
-  state => ({})
+  null,
+  { completeTask, startProcessInstance, loadTaskVariables }
 )(GenericForm)

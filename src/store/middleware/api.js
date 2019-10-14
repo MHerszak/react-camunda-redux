@@ -1,7 +1,8 @@
 import { normalize, schema } from "normalizr";
 import { camelizeKeys } from "humps";
 
-const API_ROOT = "http://localhost:8080/engine-rest/";
+const API_ROOT = "/engine-rest/";
+// const API_ROOT = "http://localhost:8080/engine-rest/";
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
@@ -12,10 +13,7 @@ const callApi = (
 ) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
 
-  return fetch(fullUrl, {
-    ...settings,
-    mode: "no-cors", // no-cors, *cors, same-origin
-  })
+  return fetch(fullUrl, settings)
     .then(response =>
       response.json().then(json => {
         if (!response.ok) {

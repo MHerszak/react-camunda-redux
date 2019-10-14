@@ -35,14 +35,10 @@ class DeployProcess extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const params = ownProps.match.params
-  return {
-    ...params,
-    ...state.entities
-  }
-}
+const mapStateToProps = (state, ownProps) => ({
+  ...state.entities
+});
 
-export default withRouter(connect(mapStateToProps, {
+export default connect(mapStateToProps, {
   deployProcess
-})(DeployProcess))
+})(DeployProcess)

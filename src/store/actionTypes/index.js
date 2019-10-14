@@ -44,5 +44,5 @@ export const loadTaskVariables = (taskId, variableNames) => (dispatch, getState)
 }
 
 export const deployProcess = (filename, file) => (dispatch, getState) => {
-  return dispatch(DeploymentActions.postProcessXML(filename, file))
+  return dispatch(DeploymentActions.postProcessXML(filename, file)).then(console.log)
 }
