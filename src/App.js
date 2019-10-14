@@ -8,14 +8,16 @@ import { routerComponents } from "./helper"
 // import logo from "./logo.svg";
 import "./App.css";
 
-
+/**
+ * 
+ */
 const App = () => (
   <Fragment>
     {/* render a navigation component */}
     <Navigation />
     {/* render routing logic of react-router-dom */}
     {/* apply switch for traversing router routs only once and use exact */}
-    <div>
+    <div style={{ marginLeft: 12, marginRight: 12 }}>
       <Switch>
         {routerComponents.map(route => (
           <Route

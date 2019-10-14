@@ -1,7 +1,5 @@
 import React from "react";
-
-const Home = props => <div>Home</div>;
-const TaskList = props => <div>TaskList</div>;
+import { TaskListPage, Home } from "./../container";
 
 export const APP_TITLE = "React Camunda Redux";
 
@@ -16,5 +14,5 @@ export const navigationDefails = [
 
 export const routerComponents = [
   { to: "/", exact: true, component: Home },
-  { to: "/tasklist", component: TaskList }
+  { to: "/tasklist", component: TaskListPage }
 ];

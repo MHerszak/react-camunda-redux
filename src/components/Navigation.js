@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { navigationDefails, APP_TITLE, styleNavigation } from "./../helper";
+import { Header } from 'semantic-ui-react';
 
 const styleList = {
   display: "flex",
@@ -15,7 +16,7 @@ const styleItem = {
 
 // export a navigation component (use react-router-dom)
 const Navigation = props => (
-  <nav style={styleNavigation}>
+  <Header style={styleNavigation}>
     <h3>{APP_TITLE}</h3>
     <ul style={styleList}>
       {navigationDefails.map(route => (
@@ -24,7 +25,7 @@ const Navigation = props => (
         </Link>
       ))}
     </ul>
-  </nav>
+  </Header>
 );
 
 export default Navigation;

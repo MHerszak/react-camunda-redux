@@ -1,4 +1,4 @@
-import * as AT from "../../constants/ActionTypes"
+import * as AT from "./../constants"
 import { CALL_API, Schemas } from "../../middleware/api"
 
 export const fetchTasks = () => ({
